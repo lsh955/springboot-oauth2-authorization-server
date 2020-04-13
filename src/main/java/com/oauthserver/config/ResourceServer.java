@@ -15,19 +15,20 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableResourceServer
 public class ResourceServer extends ResourceServerConfigurerAdapter {
     
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
-    }
-    
-    /**
-     * 자원서버 접근권한 설정
-     * @param http
-     * @throws Exception
-     */
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        
-        super.configure(http);
-    }
+//    @Override
+//    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+//        super.configure(resources);
+//    }
+//
+//    /**
+//     * 자원서버 접근권한 설정
+//     * @param http
+//     * @throws Exception
+//     */
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//
+//        super.configure(http);
+//    }
+
 }

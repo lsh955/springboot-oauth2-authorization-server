@@ -1,1 +1,18 @@
+server:
+  port: 8081
+  # http://localhost:8081/oauth/authorize?client_id=testClientId&redirect_uri=http://localhost:8081/oauth2/callback&response_type=code&scope=read
 
+#spring:
+#  h2:
+#    console:
+#      enabled: true
+#      settings:
+#        web-allow-others: true
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/test
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    properties.hibernate.hbm2ddl.auto: update
+#    showSql: true
