@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 공통 환경 세팅
  */
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvc implements WebMvcConfigurer {
     
     private static final long MAX_AGE_SECONDS = 3600;
     
