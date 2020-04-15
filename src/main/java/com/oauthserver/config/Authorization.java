@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @Configuration
 @EnableAuthorizationServer // 권한서버 활성화
 public class Authorization extends AuthorizationServerConfigurerAdapter {
-    
+
     /**
      * OAuth2 인증서버 자체의 보안 정보를 설정하는 부분
      * @param security
@@ -23,9 +23,10 @@ public class Authorization extends AuthorizationServerConfigurerAdapter {
 //
 //        super.configure(security);
 //    }
-    
+
     /**
      * Client 에 대한 정보를 설정하는 부분
+     *
      * @param clients
      * @throws Exception
      */
@@ -43,7 +44,7 @@ public class Authorization extends AuthorizationServerConfigurerAdapter {
                //.refreshTokenValiditySeconds(60 * 60 * 24 * 120);       // 발급된 refreshToken의 유효시간(초)
         // @formatter:on
     }
-    
+
     /**
      * OAuth2 서버가 작동하기 위한 Endpoint에 대한 정보를 설정
      *
@@ -55,5 +56,5 @@ public class Authorization extends AuthorizationServerConfigurerAdapter {
 //
 //        super.configure(endpoints);
 //    }
-    
+
 }

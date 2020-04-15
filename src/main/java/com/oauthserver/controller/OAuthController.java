@@ -22,21 +22,21 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/oauth2")
 public class OAuthController {
-    
+
     private final Gson gson;
     private final RestTemplate restTemplate;
-    
+
     @GetMapping(value = "/callback")
     public OAuthToken callbackSocial(@RequestParam String code) {
-        
+
         String credentials = "testClientId:testSecret";
         String encodedCredentials = new String(Base64.encodeBase64(credentials.getBytes()));
-        
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Authorization", "Basic " + encodedCredentials);
-        
+
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("code", code);
         params.add("grant_type", "authorization_code");

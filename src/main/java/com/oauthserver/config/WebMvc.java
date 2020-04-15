@@ -16,13 +16,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebMvc implements WebMvcConfigurer {
-    
+
     private static final long MAX_AGE_SECONDS = 3600;
-    
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // 인증서버에 크로스 도메인 접근 가능하도록 cors 설정
-        
+
         // @formatter:off
         registry.addMapping("/**")
                 .allowedOrigins("*")
@@ -32,15 +32,15 @@ public class WebMvc implements WebMvcConfigurer {
                 .maxAge(MAX_AGE_SECONDS);
         // @formatter:on
     }
-    
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-    
+
 }
