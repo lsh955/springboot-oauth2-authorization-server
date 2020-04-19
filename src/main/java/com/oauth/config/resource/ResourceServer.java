@@ -1,4 +1,4 @@
-package com.oauthserver.config.resource;
+package com.oauth.config.resource;
 
 /**
  * @author 이승환

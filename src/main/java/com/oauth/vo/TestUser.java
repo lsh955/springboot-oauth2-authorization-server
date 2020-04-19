@@ -1,4 +1,4 @@
-package com.oauthserver.vo;
+package com.oauth.vo;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

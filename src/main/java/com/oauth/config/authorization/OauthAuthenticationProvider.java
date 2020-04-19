@@ -1,6 +1,6 @@
-package com.oauthserver.config.authorization;
+package com.oauth.config.authorization;
 
-import com.oauthserver.vo.TestUser;
+import com.oauth.vo.TestUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

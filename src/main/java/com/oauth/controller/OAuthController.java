@@ -1,8 +1,8 @@
-package com.oauthserver.controller;
+package com.oauth.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oauthserver.dto.OAuthToken;
+import com.oauth.dto.OAuthToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.util.encoders.Base64;

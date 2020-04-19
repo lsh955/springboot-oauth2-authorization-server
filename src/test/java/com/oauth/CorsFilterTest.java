@@ -1,4 +1,4 @@
-package com.oauthserver;
+package com.oauth;
 
 /**
  * @author 이승환

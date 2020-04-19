@@ -1,4 +1,4 @@
-package com.oauthserver;
+package com.oauth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;

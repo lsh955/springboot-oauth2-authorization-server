@@ -1,4 +1,4 @@
-package com.oauthserver.config.resource;
+package com.oauth.config.resource;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

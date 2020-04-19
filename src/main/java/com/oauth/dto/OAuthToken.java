@@ -1,4 +1,4 @@
-package com.oauthserver.dto;
+package com.oauth.dto;
 
 /**
  * @author 이승환
