@@ -25,7 +25,6 @@ public class Security extends WebSecurityConfigurerAdapter {
 //        // @formatter:on
 //    }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off

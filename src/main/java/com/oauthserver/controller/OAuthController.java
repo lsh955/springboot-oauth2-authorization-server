@@ -29,14 +29,6 @@ public class OAuthController {
     private final Gson gson;
     private final RestTemplate restTemplate;
 
-    @GetMapping("/oauth2/callback")
-    public String callback(@RequestParam String code) throws JsonProcessingException {
-        log.info("code = " + code);
-        OAuthToken token = callbackSocial(code);
-        log.info("getToken() = " + token);
-        return token.toString();
-    }
-
     @GetMapping(value = "/callback")
     public OAuthToken callbackSocial(@RequestParam String code) {
 
@@ -50,6 +42,7 @@ public class OAuthController {
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("code", code);
+        log.info("code : " + code);
         params.add("grant_type", "authorization_code");
         params.add("redirect_uri", "http://localhost:8081/oauth2/callback");
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
