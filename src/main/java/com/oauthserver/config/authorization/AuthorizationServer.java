@@ -13,6 +13,15 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 /**
  * @author 이승환
  * @since 2020-04-13
+ *
+ * https://spring.io/blog/2019/11/14/spring-security-oauth-2-0-roadmap-update
+ *
+ * spring-security-oauth2의 지원을 종료하고 리소스 서버와 클라이언트를
+ * spring-security.5.2.x 버전 부터 통합하여 지원하기로 나와 있는데 그 중 인증 서버에 관련된 프레임워크는 지원을 끊기로 결정.
+ *
+ * 인증서버에 대한 구현은 spring-security-oauth2 2.3.x 버전은 2020년 3월 까지는 지원할 예정, 2021년 까지 2.4.x 버전은 지속해서 지원할 예정.
+ *
+ * keycloak 과 같은 오픈 소스를 활용 할것.
  */
 @Configuration
 @EnableAuthorizationServer // 권한서버 활성화
