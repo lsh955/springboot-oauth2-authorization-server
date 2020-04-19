@@ -1,4 +1,4 @@
-package com.oauthserver.config;
+package com.oauthserver.config.authorization;
 
 import com.oauthserver.vo.TestUser;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.security.core.AuthenticationException;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class SecurityAuthenticationProvider implements AuthenticationProvider {
+public class OauthAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

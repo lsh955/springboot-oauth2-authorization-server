@@ -1,4 +1,4 @@
-package com.oauthserver.config;
+package com.oauthserver.config.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  */
 @Configuration
 @EnableAuthorizationServer // 권한서버 활성화
-public class Authorization extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private static AuthenticationManager authenticationManager;
