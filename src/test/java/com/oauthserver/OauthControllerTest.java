@@ -1,5 +1,6 @@
 package com.oauthserver;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * @author 이승환
  * @since 2020/04/19
  */
+@Slf4j
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,9 +48,9 @@ class OauthControllerTest {
                 .accept(MediaType.APPLICATION_JSON_VALUE)
         ).andReturn();
 
-        System.out.println("result = " + result);
+        log.info("result = " + result);
         String contentAsString = result.getResponse().getContentAsString();
-        System.out.println("body = " + contentAsString);
+        log.info("body = " + contentAsString);
 
         // then
         Assertions.assertThat(contentAsString).contains("access_token").contains("refresh_token");

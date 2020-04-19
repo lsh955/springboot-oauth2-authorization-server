@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.oauthserver.dto.OAuthToken;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -19,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
  * @author 이승환
  * @since 2020-04-14
  */
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/oauth2")
@@ -29,9 +31,9 @@ public class OAuthController {
 
     @GetMapping("/oauth2/callback")
     public String callback(@RequestParam String code) throws JsonProcessingException {
-        System.out.println("code = " + code);
+        log.info("code = " + code);
         OAuthToken token = callbackSocial(code);
-        System.out.println("getToken() = " + token);
+        log.info("getToken() = " + token);
         return token.toString();
     }
 
