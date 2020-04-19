@@ -17,7 +17,7 @@ import org.springframework.security.core.AuthenticationException;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class OauthAuthenticationProvider implements AuthenticationProvider {
+public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
