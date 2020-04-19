@@ -13,6 +13,7 @@ import java.io.IOException;
  * @author 이승환
  * @since 2020/04/19
  * <p>
+ * CORS 에러 발생에 대한 처리
  * 교차 출처 리소스 공유(Cross-Origin Resource Sharing)이라 하며, 다른 사이트에서 우리쪽 서버에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 체제
  */
 @Component
