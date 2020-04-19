@@ -1,13 +1,8 @@
-# curl -d grant_type=password
-#-d username=user
-#-d password=pass
-#-H "Authorization: Basic dGVzdENsaWVudElkOnRlc3RTZWNyZXQ="
-#-X POST http://localhost:8081/oauth/token
 POST http://localhost:8081/oauth/token
-Authorization: Basic dGVzdENsaWVudElkOnRlc3RTZWNyZXQ=
 Content-Type: application/x-www-form-urlencoded
+Authorization: Basic Y2xpZW50OnBhc3N3b3Jk
 
-grant_type=password&username=user&password=pass
+code=8W7NLu&grant_type=authorization_code&redirect_uri=http://localhost:8081/oauth2/callback&scope=read
 
 ###
 

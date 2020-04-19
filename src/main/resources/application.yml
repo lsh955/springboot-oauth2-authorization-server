@@ -6,4 +6,4 @@ server:
 security:
   oauth2:
     jwt:
-      signkey: 123@#$
+      signkey: 123@#$ # 정합성 검증을 위한 키를 지정
