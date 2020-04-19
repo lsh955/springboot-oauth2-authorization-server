@@ -1,7 +1,7 @@
 server:
-  port: 8081
-  # http://localhost:8081/oauth/authorize?client_id=TestClientId&response_type=code
-  # http://localhost:8081/oauth/authorize?client_id=TestClientId&redirect_uri=http://localhost:8081/oauth2/callback&response_type=code&scope=read
+  port: 8080
+  # http://localhost:8080/oauth/authorize?client_id=TestClientId&response_type=code
+  # http://localhost:8080/oauth/authorize?client_id=TestClientId&redirect_uri=http://localhost:8080/oauth2/callback&response_type=code&scope=read
 
 security:
   oauth2:

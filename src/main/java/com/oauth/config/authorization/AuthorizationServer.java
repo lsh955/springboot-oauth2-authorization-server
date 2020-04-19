@@ -64,7 +64,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         clients.inMemory()
                .withClient("TestClientId")                       // 클라이언트 아이디
                .secret("{noop}TestSecret")                              // 클라이언트 시크릿(아직 암호화 하지않는 관계로 {noop}처리)
-               .redirectUris("http://localhost:8081/oauth2/callback")   // 인증 완료 후 이동할 클라이언트 웹 페이지 주소로 code 값 전송
+               .redirectUris("http://localhost:8080/oauth2/callback")   // 인증 완료 후 이동할 클라이언트 웹 페이지 주소로 code 값 전송
                .authorizedGrantTypes("authorization_code", "password", "refresh_token")     // 엑세스 토크 발급 가능한 인증 타입
                //.authorities("ROLE_USER")                              // 클라이언트에 부여된 권한
                .scopes("read", "write")                                 // 인증 후 얻은 accessToken으로 접근할 수 있는 리소스의 범위
