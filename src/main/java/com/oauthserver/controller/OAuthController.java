@@ -1,5 +1,6 @@
 package com.oauthserver.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.oauthserver.dto.OAuthToken;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,18 @@ public class OAuthController {
     private final Gson gson;
     private final RestTemplate restTemplate;
 
+    @GetMapping("/oauth2/callback")
+    public String callback(@RequestParam String code) throws JsonProcessingException {
+        System.out.println("code = " + code);
+        OAuthToken token = callbackSocial(code);
+        System.out.println("getToken() = " + token);
+        return token.toString();
+    }
+
     @GetMapping(value = "/callback")
     public OAuthToken callbackSocial(@RequestParam String code) {
 
-        String credentials = "testClientId:testSecret";
+        String credentials = "TestClientId:TestSecret";
         String encodedCredentials = new String(Base64.encodeBase64(credentials.getBytes()));
 
         HttpHeaders headers = new HttpHeaders();
