@@ -34,7 +34,6 @@ public class OauthAuthenticationProvider implements AuthenticationProvider {
         }
 
         return new UsernamePasswordAuthenticationToken(username, password, testUser.getAuthorities());
-
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.oauth.config.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -9,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 /**
  * @author 이승환
@@ -29,6 +32,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private static AuthenticationManager authenticationManager;
+
+    @Value("${security.oauth2.jwt.signkey}")
+    private String signKey;
 
     public void AuthorizationServerConfigurer(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         this.authenticationManager = authenticationConfiguration.getAuthenticationManager();
@@ -76,7 +82,24 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+        //endpoints.authenticationManager(authenticationManager);
+
+        // 토큰 발급 방식을 JWT 토큰 방식으로 변경한다.
+        endpoints.accessTokenConverter(jwtAccessTokenConverter());
+    }
+
+    /**
+     * jwt converter를 등록
+     *
+     * JWT를 사용할 경우 토큰 자체로 인증정보가 관리
+     * @return
+     */
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey(signKey);
+
+        return converter;
     }
 
 }

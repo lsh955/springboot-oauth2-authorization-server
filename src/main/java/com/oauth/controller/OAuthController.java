@@ -37,7 +37,6 @@ public class OAuthController {
         log.info("getToken() : " + token);
 
         return token;
-
     }
 
     /**
@@ -71,7 +70,32 @@ public class OAuthController {
         }
 
         return null;
+    }
 
+    @GetMapping(value = "/token/refresh")
+    public OAuthToken refreshToken(@RequestParam String refreshToken) throws JsonProcessingException {
+
+        String credentials = "testClientId:testSecret";
+        String encodedCredentials = new String(Base64.encode(credentials.getBytes()));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.add("Authorization", "Basic " + encodedCredentials);
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("refresh_token", refreshToken);
+        params.add("grant_type", "refresh_token");
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8081/oauth/token", request, String.class);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            log.info("response.getBody() : " + response.getBody());
+            OAuthToken oauthTokenDto = objectMapper.readValue(response.getBody(), OAuthToken.class);
+            return oauthTokenDto;
+        }
+
+        return null;
     }
 
 }
