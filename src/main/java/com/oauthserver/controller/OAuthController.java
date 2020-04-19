@@ -37,10 +37,12 @@ public class OAuthController {
         log.info("getToken() : " + token);
 
         return token;
+
     }
 
     /**
      * token을 호출하여 access_token 획득
+     *
      * @param code
      * @return
      * @throws JsonProcessingException

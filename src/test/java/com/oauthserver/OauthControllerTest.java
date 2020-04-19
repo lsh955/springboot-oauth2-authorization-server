@@ -73,7 +73,8 @@ class OauthControllerTest {
         String checkTokenStr = mvcResultApi.getResponse().getContentAsString();
 
         Map checkTokenMap = objectMapper.readValue(checkTokenStr, Map.class);
-        boolean active = (boolean) checkTokenMap.get("active");;
+        boolean active = (boolean) checkTokenMap.get("active");
+        ;
         String user_name = (String) checkTokenMap.get("user_name");
         String client_id = (String) checkTokenMap.get("client_id");
 

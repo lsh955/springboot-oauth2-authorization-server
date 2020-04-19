@@ -28,9 +28,11 @@ public class OauthAuthenticationProvider implements AuthenticationProvider {
 
         // 테스트 유저 호출(만약 DB에 연동해서 불러온다면 대체해도 된다)
         TestUser testUser = new TestUser();
+
         if (password.equals(testUser.getPassword()) == false) {
             throw new BadCredentialsException(username);
         }
+
         return new UsernamePasswordAuthenticationToken(username, password, testUser.getAuthorities());
 
     }

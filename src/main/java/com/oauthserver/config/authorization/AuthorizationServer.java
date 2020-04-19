@@ -27,6 +27,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     /**
      * OAuth2 인증서버 자체의 보안 정보를 설정하는 부분
+     *
      * @param security
      * @throws Exception
      */
