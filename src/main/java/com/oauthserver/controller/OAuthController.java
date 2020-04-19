@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oauthserver.dto.OAuthToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-//import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
