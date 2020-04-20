@@ -36,14 +36,17 @@ class OauthControllerTest {
     @Test
     @DisplayName("oauth token 테스트")
     void oauthTokenTest() throws Exception {
+        
         // given
         String clientId = "TestClientId";
         String secret = "TestSecret";
         String username = "user";
+        String password = "pass";
+        
         MultiValueMap params = new LinkedMultiValueMap();
         params.add("grant_type", "password");
         params.add("username", username);
-        params.add("password", "pass");
+        params.add("password", password);
 
         // when
         MvcResult result = mockMvc.perform(post("/oauth/token")
@@ -74,13 +77,14 @@ class OauthControllerTest {
 
         Map checkTokenMap = objectMapper.readValue(checkTokenStr, Map.class);
         boolean active = (boolean) checkTokenMap.get("active");
-        ;
+        
         String user_name = (String) checkTokenMap.get("user_name");
         String client_id = (String) checkTokenMap.get("client_id");
 
         Assertions.assertThat(active).isEqualTo(true);
         Assertions.assertThat(user_name).isEqualTo(username);
         Assertions.assertThat(client_id).isEqualTo(clientId);
+        
     }
 
 }

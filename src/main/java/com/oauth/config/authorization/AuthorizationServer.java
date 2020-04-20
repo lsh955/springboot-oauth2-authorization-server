@@ -42,8 +42,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        // Resource서버에서 token 검증 요청을 Authorization서버로 보낼때 /oauth/check_token을 호출
         // 토큰유효성(/token/check_token) 접근을 위해 설정
-        security.checkTokenAccess("permitAll()");
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()") //allow check token
+                .allowFormAuthenticationForClients();
     }
 
     
@@ -97,8 +100,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
         return converter;
     }
-    
-    
+
+
     /**
      * tokenstore 에서 jwtTokenStore 를 사용하고 암호화를 진행단.
      *
