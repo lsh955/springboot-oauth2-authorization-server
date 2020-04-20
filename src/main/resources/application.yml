@@ -5,5 +5,6 @@ server:
 
 security:
   oauth2:
-    jwt:
-      signkey: 123@#$ # 정합성 검증을 위한 키를 지정
+    resource:
+      jwt:
+        signkey: 123@#$  # oauth서버에 생성한 공개키

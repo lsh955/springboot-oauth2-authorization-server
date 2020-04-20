@@ -8,7 +8,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
 
 /**
  * @author 이승환
@@ -26,10 +29,11 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @Configuration
 @EnableAuthorizationServer // 권한서버 활성화
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
+    
+    @Value("${security.oauth2.resource.jwt.signkey}")
+    private String signkey;
 
-    @Value("${security.oauth2.jwt.signkey}")
-    private String signKey;
-
+    
     /**
      * OAuth2 인증서버 자체의 보안 정보를 설정하는 부분
      *
@@ -42,6 +46,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         security.checkTokenAccess("permitAll()");
     }
 
+    
     /**
      * Client 에 대한 정보를 설정하는 부분
      *
@@ -64,6 +69,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         // @formatter:on
     }
 
+    
     /**
      * OAuth2 서버가 작동하기 위한 Endpoint에 대한 정보를 설정
      *
@@ -76,18 +82,31 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         endpoints.accessTokenConverter(jwtAccessTokenConverter());
     }
 
+    
     /**
-     * jwt converter를 등록
+     * jwt 토큰을 키로 검증
+     * JWT를 사용할 경우 토큰 자체로 인증정보가 관리.
+     * 이 키는 resource server와 auth server가 동일해야 한다.
      *
-     * JWT를 사용할 경우 토큰 자체로 인증정보가 관리
      * @return
      */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(signKey);
+        converter.setSigningKey(signkey);
 
         return converter;
+    }
+    
+    
+    /**
+     * tokenstore 에서 jwtTokenStore 를 사용하고 암호화를 진행단.
+     *
+     * @return
+     */
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
 }
