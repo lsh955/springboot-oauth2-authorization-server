@@ -57,7 +57,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // @formatter:off
         clients.inMemory()
-               .withClient("TestClientId")                       // 클라이언트 아이디
+               .withClient("TestClientId")                      // 클라이언트 아이디
                .secret("{noop}TestSecret")                              // 클라이언트 시크릿(아직 암호화 하지않는 관계로 {noop}처리)
                .redirectUris("http://localhost:8080/oauth2/callback")   // 인증 완료 후 이동할 클라이언트 웹 페이지 주소로 code 값 전송
                .authorizedGrantTypes("authorization_code", "password", "refresh_token")     // 엑세스 토크 발급 가능한 인증 타입
