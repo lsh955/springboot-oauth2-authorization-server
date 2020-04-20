@@ -17,13 +17,15 @@ import java.io.IOException;
  * 교차 출처 리소스 공유(Cross-Origin Resource Sharing)이라 하며, 다른 사이트에서 우리쪽 서버에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 체제
  */
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE)  // 가장 먼저 로깅하는 기능이 수행
 public class CorsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
+        
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "*");
