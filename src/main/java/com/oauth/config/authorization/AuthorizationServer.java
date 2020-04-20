@@ -1,11 +1,8 @@
 package com.oauth.config.authorization;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -30,15 +27,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @EnableAuthorizationServer // 권한서버 활성화
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private static AuthenticationManager authenticationManager;
-
     @Value("${security.oauth2.jwt.signkey}")
     private String signKey;
-
-    public void AuthorizationServerConfigurer(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        this.authenticationManager = authenticationConfiguration.getAuthenticationManager();
-    }
 
     /**
      * OAuth2 인증서버 자체의 보안 정보를 설정하는 부분
@@ -82,8 +72,6 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        //endpoints.authenticationManager(authenticationManager);
-
         // 토큰 발급 방식을 JWT 토큰 방식으로 변경한다.
         endpoints.accessTokenConverter(jwtAccessTokenConverter());
     }
