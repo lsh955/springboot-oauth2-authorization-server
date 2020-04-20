@@ -2,9 +2,21 @@ server:
   port: 8080
   # http://localhost:8080/oauth/authorize?client_id=TestClientId&response_type=code
   # http://localhost:8080/oauth/authorize?client_id=TestClientId&redirect_uri=http://localhost:8080/oauth2/callback&response_type=code&scope=read
-
+---
 security:
   oauth2:
     resource:
       jwt:
         signkey: 123@#$  # oauth서버에 생성한 공개키
+---
+spring:
+  profiles:
+    active: oauth2
+---
+spring:
+  profiles: oauth2
+  datasource:
+    url: jdbc:mariadb://codedot.co.kr:3306/oauth2?characterEncoding=UTF-8
+    username: oauth2
+    password: tmdghks05)%
+    driver-class-name: org.mariadb.jdbc.Driver
