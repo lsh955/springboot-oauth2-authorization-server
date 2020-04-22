@@ -1,4 +1,4 @@
-package com.oauth.config.authorization;
+package com.oauth.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 @EnableAuthorizationServer // 권한서버 활성화
-public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     
     @Value("${security.oauth2.resource.jwt.key-value}")
     private String signkey;
