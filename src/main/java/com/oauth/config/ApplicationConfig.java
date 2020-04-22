@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * 공통 환경 세팅
  */
 @Configuration
-public class AppConfig {
+public class ApplicationConfig {
 
     @Bean
     public RestTemplate getRestTemplate() {
