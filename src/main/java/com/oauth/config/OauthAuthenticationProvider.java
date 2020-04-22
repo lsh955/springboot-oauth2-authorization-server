@@ -1,4 +1,4 @@
-package com.oauth.config.authorization;
+package com.oauth.config;
 
 import com.oauth.vo.TestUser;
 import lombok.RequiredArgsConstructor;

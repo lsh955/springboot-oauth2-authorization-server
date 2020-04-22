@@ -30,9 +30,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer // 권한서버 활성화
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     
-    @Value("${security.oauth2.resource.jwt.signkey}")
+    @Value("${security.oauth2.resource.jwt.key-value}")
     private String signkey;
-
+    
     
     /**
      * OAuth2 인증서버 자체의 보안 정보를 설정하는 부분
