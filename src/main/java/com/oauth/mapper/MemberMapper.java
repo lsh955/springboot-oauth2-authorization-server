@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Mapper
 @Component
-public interface MapperMapper {
+public interface MemberMapper {
     
     Member findAll(@Param("findAll") String findAll);
 
