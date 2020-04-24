@@ -26,13 +26,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest
 @AutoConfigureMockMvc
 class OauthControllerTest {
-
+    
     @Autowired
     MockMvc mockMvc;
-
+    
     @Autowired
     ObjectMapper objectMapper;
-
+    
     @Test
     @DisplayName("oauth token 테스트")
     void oauthTokenTest() throws Exception {
@@ -47,44 +47,44 @@ class OauthControllerTest {
         params.add("grant_type", "password");
         params.add("username", username);
         params.add("password", password);
-
+        
         // when
         MvcResult result = mockMvc.perform(post("/oauth/token")
                 .params(params)
                 .with(httpBasic(clientId, secret))
                 .accept(MediaType.APPLICATION_JSON_VALUE)
         ).andReturn();
-
+        
         System.out.println("result = " + result);
         String contentAsString = result.getResponse().getContentAsString();
         System.out.println("body = " + contentAsString);
-
+        
         // then
         Assertions.assertThat(contentAsString).contains("access_token").contains("refresh_token");
-
+        
         Map map = objectMapper.readValue(contentAsString, Map.class);
         System.out.println("map = " + map);
-
+        
         // token 검토
         String accessToken = (String) map.get("access_token");
         String url = "/oauth/check_token?token=" + accessToken;
-
+        
         MvcResult mvcResultApi = mockMvc.perform(get(url)).andReturn();
-
+        
         System.out.println("mvcResultApi = " + mvcResultApi);
         System.out.println("mvcResultApi.getResponse().getContentAsString() = " + mvcResultApi.getResponse().getContentAsString());
         String checkTokenStr = mvcResultApi.getResponse().getContentAsString();
-
+        
         Map checkTokenMap = objectMapper.readValue(checkTokenStr, Map.class);
         boolean active = (boolean) checkTokenMap.get("active");
         
         String user_name = (String) checkTokenMap.get("user_name");
         String client_id = (String) checkTokenMap.get("client_id");
-
+        
         Assertions.assertThat(active).isEqualTo(true);
         Assertions.assertThat(user_name).isEqualTo(username);
         Assertions.assertThat(client_id).isEqualTo(clientId);
         
     }
-
+    
 }

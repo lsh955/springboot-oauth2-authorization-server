@@ -16,14 +16,14 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 /**
  * @author 이승환
  * @since 2020-04-13
- *
+ * <p>
  * https://spring.io/blog/2019/11/14/spring-security-oauth-2-0-roadmap-update
- *
+ * <p>
  * spring-security-oauth2의 지원을 종료하고 리소스 서버와 클라이언트를
  * spring-security.5.2.x 버전 부터 통합하여 지원하기로 나와 있는데 그 중 인증 서버에 관련된 프레임워크는 지원을 끊기로 결정.
- *
+ * <p>
  * 인증서버에 대한 구현은 spring-security-oauth2 2.3.x 버전은 2020년 3월 까지는 지원할 예정, 2021년 까지 2.4.x 버전은 지속해서 지원할 예정.
- *
+ * <p>
  * keycloak 과 같은 오픈 소스를 활용 할것.
  */
 @Configuration
@@ -48,7 +48,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .checkTokenAccess("isAuthenticated()") //allow check token
                 .allowFormAuthenticationForClients();
     }
-
+    
     
     /**
      * Client 에 대한 정보를 설정하는 부분
@@ -71,7 +71,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                .refreshTokenValiditySeconds(60 * 60 * 24 * 120);        // 발급된 refreshToken의 유효시간(초)
         // @formatter:on
     }
-
+    
     
     /**
      * OAuth2 서버가 작동하기 위한 Endpoint에 대한 정보를 설정
@@ -84,7 +84,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
         // 토큰 발급 방식을 JWT 토큰 방식으로 변경한다.
         endpoints.accessTokenConverter(jwtAccessTokenConverter());
     }
-
+    
     
     /**
      * jwt 토큰을 키로 검증
@@ -97,11 +97,11 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(signkey);
-
+        
         return converter;
     }
-
-
+    
+    
     /**
      * tokenstore 에서 jwtTokenStore 를 사용하고 암호화를 진행단.
      *
@@ -111,5 +111,5 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
-
+    
 }

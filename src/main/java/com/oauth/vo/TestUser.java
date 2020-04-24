@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * @since 2020/04/19
  */
 public class TestUser {
-
+    
     private String username = "user";
     private String password = "pass";
     private List<String> roles = new ArrayList<>();
@@ -21,19 +21,19 @@ public class TestUser {
     public TestUser() {
         roles.add("ROLE_USER");
     }
-
+    
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
-
+    
     public String getUsername() {
         return username;
     }
-
+    
     public String getPassword() {
         return password;
     }
-
+    
     public List<String> getRoles() {
         return roles;
     }

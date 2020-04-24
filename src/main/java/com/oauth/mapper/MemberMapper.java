@@ -14,5 +14,5 @@ import org.springframework.stereotype.Component;
 public interface MemberMapper {
     
     Member findAll(@Param("findAll") String findAll);
-
+    
 }

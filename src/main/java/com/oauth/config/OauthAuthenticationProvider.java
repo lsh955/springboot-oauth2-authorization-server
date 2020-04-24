@@ -18,27 +18,27 @@ import org.springframework.security.core.AuthenticationException;
 @Configuration
 @RequiredArgsConstructor
 public class OauthAuthenticationProvider implements AuthenticationProvider {
-
+    
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         log.info("authentication.username = " + username);
         log.info("authentication.password = " + password);
-
+        
         // 테스트 유저 호출(만약 DB에 연동해서 불러온다면 대체해도 된다)
         TestUser testUser = new TestUser();
-
+        
         if (!password.equals(testUser.getPassword())) {
             throw new BadCredentialsException(username);
         }
-
+        
         return new UsernamePasswordAuthenticationToken(username, password, testUser.getAuthorities());
     }
-
+    
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
-
+    
 }
