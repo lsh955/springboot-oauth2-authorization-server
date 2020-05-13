@@ -11,6 +11,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 /**
@@ -66,7 +69,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                .authorizedGrantTypes("authorization_code", "password", "refresh_token")     // 엑세스 토크 발급 가능한 인증 타입
                //.authorities("ROLE_USER")                              // 클라이언트에 부여된 권한
                .scopes("read", "write")                                 // 인증 후 얻은 accessToken으로 접근할 수 있는 리소스의 범위
-               //.autoApprove(true)                                     // OAuth Approval 승인창 무시하고 모든권한 승인한다.
+               .autoApprove(true)                                     // OAuth Approval 승인창 무시하고 모든권한 승인한다.
                .accessTokenValiditySeconds(60 * 60 * 4)                 // 발급된 accessToken의 유효시간(초)
                .refreshTokenValiditySeconds(60 * 60 * 24 * 120);        // 발급된 refreshToken의 유효시간(초)
         // @formatter:on
@@ -110,6 +113,18 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+    
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:8081");    // vue.js
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
     
 }

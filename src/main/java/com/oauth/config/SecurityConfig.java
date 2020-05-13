@@ -16,10 +16,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.csrf().disable()                           // CSRF 비활성화
-            .headers().frameOptions().sameOrigin()      // X-Frame-Options(클릭재킹) 활성화
-            .and()
-                .authorizeRequests()
+    
+        http.csrf().disable();
+    
+        http.headers().frameOptions().disable();
+        
+        http.authorizeRequests()
                 .antMatchers("/oauth/authorize").permitAll()
                 .antMatchers("/oauth/**", "/oauth2/callback").permitAll()
             .and()
